@@ -1,0 +1,36 @@
+{
+  "name": "consumer-sqs-pact-example",
+  "version": "1.0.0",
+  "description": "An consumer example on how to use contract based development with pact",
+  "repository": "https://github.com/indrabasak/consumer-sqs-pact-example.git",
+  "author": "indra.basak1@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "prestart": "yarn",
+    "test": "jest --testTimeout 30000  book.pact.test.js",
+    "lint": "eslint ./src/**/*.js ./test/**/*.js -f table"
+  },
+  "devDependencies": {
+    "@pact-foundation/pact": "^10.4.1",
+    "@pact-foundation/pact-node": "^10.17.7",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-formatter-table": "^7.32.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.2.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.3.1",
+    "jest-html-reporter": "^3.4.2",
+    "jest-junit": "^13.0.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "prettier": "2.5.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1322.0",
+    "lambda-api": "^0.12.0",
+    "serverless-deployment-bucket": "^1.6.0",
+    "uuid": "^9.0.0"
+  }
+}

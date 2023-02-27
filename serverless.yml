@@ -1,0 +1,62 @@
+service: consumer-sqs-pact-example
+frameworkVersion: '3'
+
+useDotenv: true
+
+custom:
+  baseAppName: con-sqs-ex
+  config: ${file(environments/${self:provider.region}/${opt:stage, self:provider.stage, 'poc'}.yml)}
+  deploymentBucket:
+    name: '${self:service}-deployments-${self:provider.region}-${aws:accountId}'
+    policy: { "Version": "2008-10-17", "Statement": [{"Effect": "Deny","Principal": "*","Action": "s3:*","Resource": ["arn:aws:s3:::${self:service}-deployments-${aws:region}-${aws:accountId}/*","arn:aws:s3:::${self:service}-deployments-${aws:region}-${aws:accountId}"],"Condition": {"Bool": {"aws:SecureTransport": "false"}}}]}
+    blockPublicAccess: true
+    skipPolicySetup: false
+    versioning: true
+    tags:
+      - Key: STAGE
+        Value: ${opt:stage, 'poc'}
+      - Key: 'adsk:moniker'
+        Value: ${self:custom.config.moniker}
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'poc'}
+  region: ${opt:region, 'us-west-2'}
+  cfnRole: arn:aws:iam::${aws:accountId}:role/AdskCfnAdministratorAccessExecutionRole
+
+package:
+  individually: true
+  exclude:
+    - ./**
+    - '!node_modules/**'
+
+functions:
+  read-book-event:
+    name: ${self:service}-read-book-event
+    handler: src/read-book-event/index.handler
+    package:
+      include:
+        - src/read-book-event/**
+    memorySize: 512
+    timeout: 300
+    reservedConcurrency: 5
+    vpc:
+      securityGroupIds:
+        - Ref: ConsumerLambdaSecurityGroup
+      subnetIds: ${self:custom.config.subnetIds}
+    role:
+      - ConsumerLambdaRole
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - DeadLetterQueue
+              - Arn
+
+resources:
+  - ${file(resources/securitygroup-lambda.yml)}
+  - ${file(resources/role-lambda.yml)}
+
+plugins:
+  - serverless-deployment-bucket

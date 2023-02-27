@@ -1,0 +1,8 @@
+---
+moniker: 9151824B-C-UW2
+logLevel: debug
+subnetIds:
+  - subnet-0b2241d5d0d31d04b
+  - subnet-0a53c0c816a673edc
+  - subnet-0fc808fa79f9faea2
+vpcId: vpc-033513d85f283c90f
