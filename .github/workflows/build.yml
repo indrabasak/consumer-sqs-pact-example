@@ -28,14 +28,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Install
+      - name: Install NPM
+        run: npm i
+      - name: Install Yarn
         run: yarn install
       - name: Test
         env:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
         run: GIT_BRANCH=${GITHUB_REF:11} yarn test
       - name: Publish pacts between consumer-sqs-pact-example and ${{ matrix.pact_provider }}
-        run: GIT_BRANCH=${GIT_REF:11} yarn publish_pacts
+        run: GIT_BRANCH=${GIT_REF:11} make publish_pacts
         env:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
 
