@@ -39,7 +39,7 @@ publish_pacts: .env
 	@echo "\n========== Branch: ${GIT_BRANCH}  ==========\n"
 	@echo "\n========== Commit: ${GIT_COMMIT}  ==========\n"
 	LOG_ENABLED=true \
-	@"${PACT_CLI}" publish ${PWD}/pacts --consumer-app-version ${GIT_COMMIT} --tag ${GIT_BRANCH}
+	${PACT_CLI} publish ${PWD}/pacts --consumer-app-version ${GIT_COMMIT} --tag ${GIT_BRANCH}
 
 ## =====================
 ## Build/test tasks
