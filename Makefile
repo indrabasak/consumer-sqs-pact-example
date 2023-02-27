@@ -11,8 +11,6 @@ else
 	DEPLOY_TARGET=no_deploy
 endif
 
-@echo "\n========== main branch ==========\n"
-
 all: test
 
 ## ====================
