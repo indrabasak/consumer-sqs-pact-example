@@ -6,12 +6,12 @@ PACT_CLI="docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKE
 
 # Only deploy from master
 ifeq ($(GIT_BRANCH),main)
-    @echo "\n========== main branch ==========\n"
 	DEPLOY_TARGET=deploy
 else
-    @echo "\n========== not a main branch ==========\n"
 	DEPLOY_TARGET=no_deploy
 endif
+
+@echo "\n========== main branch ==========\n"
 
 all: test
 
