@@ -35,7 +35,7 @@ jobs:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
         run: GIT_BRANCH=${GITHUB_REF:11} yarn test
       - name: Publish pacts between consumer-sqs-pact-example and ${{ matrix.pact_provider }}
-        run: GIT_BRANCH=${GIT_REF:11} make publish_pacts
+        run: GIT_BRANCH=${GIT_REF:11} yarn publish_pacts
         env:
           PACT_PROVIDER: ${{ matrix.pact_provider }}
 
