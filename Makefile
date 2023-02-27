@@ -38,6 +38,8 @@ publish_pacts: .env
 	@echo "\n========== STAGE: publish pacts ==========\n"
 	@echo "\n========== Branch: ${GIT_BRANCH}  ==========\n"
 	@echo "\n========== Commit: ${GIT_COMMIT}  ==========\n"
+	@echo "\n========== Broker: ${PACT_BROKER_BASE_URL}  ==========\n"
+	@echo "\n========== Token: ${PACT_BROKER_TOKEN}  ==========\n"
 	LOG_ENABLED=true \
 	"${PACT_CLI}" publish ${PWD}/pacts --consumer-app-version ${GIT_COMMIT} --tag ${GIT_BRANCH}
 
