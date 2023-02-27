@@ -62,6 +62,7 @@ deploy: deploy_app record_deployment
 no_deploy:
 	@echo "Not deploying as not on master branch"
 
+
 can_i_deploy: .env
 	@"${PACT_CLI}" broker can-i-deploy \
 	  --pacticipant ${PACTICIPANT} \
