@@ -9,7 +9,7 @@ on:
 # Setup environment variables
 env:
   PACT_BROKER_BASE_URL: https://pqr.pactflow.io
-  PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN }}
+  PACT_BROKER_TOKEN: ${{ secrets.PACTFLOW_TOKEN_FOR_SQS_EXAMPLE }}
   PACT_BROKER_PUBLISH_VERIFICATION_RESULTS: true
   PACT_DO_NOT_TRACK: true
   GIT_BRANCH: main
