@@ -37,6 +37,7 @@ functions:
     handler: src/read-book-event/index.handler
     package:
       include:
+        - src/book/**
         - src/read-book-event/**
     memorySize: 512
     timeout: 300
@@ -50,9 +51,7 @@ functions:
     events:
       - sqs:
           arn:
-            Fn::GetAtt:
-              - DeadLetterQueue
-              - Arn
+            Fn::ImportValue: BookQueueArn
 
 resources:
   - ${file(resources/securitygroup-lambda.yml)}

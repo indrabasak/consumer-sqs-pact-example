@@ -82,4 +82,5 @@ Resources:
                 Action:
                   - sqs:*
                 Resource:
-                  - Fn::GetAtt: [BookQueue, Arn]
+                  - Fn::ImportValue: BookQueueArn
+
