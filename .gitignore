@@ -8,6 +8,7 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/**
 
 # Generated files
 .idea/**/contentModel.xml
@@ -219,3 +220,6 @@ Temporary Items
 
 # Serverless directories
 .serverless
+/pacts/consumer-sqs-pact-example-provider-sqs-pact-example.json
+/.env-bak
+/yarn.lock
