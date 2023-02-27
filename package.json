@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "prestart": "yarn",
-    "test": "jest --testTimeout 30000  book.pact.test.js",
+    "test": "jest --testTimeout 30000  book-service.pact.test.js",
     "lint": "eslint ./src/**/*.js ./test/**/*.js -f table"
   },
   "devDependencies": {
@@ -25,6 +25,7 @@
     "jest-html-reporter": "^3.4.2",
     "jest-junit": "^13.0.0",
     "jest-sonar-reporter": "^2.0.0",
+    "path": "^0.12.7",
     "prettier": "2.5.1"
   },
   "dependencies": {
