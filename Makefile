@@ -29,7 +29,7 @@ fake_ci: .env
 	make ci
 
 
-publish_pacts: .env
+publish_pacts:
 	@"${PACT_CLI}" publish ${PWD}/pacts --consumer-app-version ${GIT_COMMIT} --tag ${GIT_BRANCH}
 
 ## =====================
