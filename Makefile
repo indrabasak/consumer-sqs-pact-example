@@ -3,9 +3,16 @@
 PACTICIPANT := "consumer-sqs-pact-example"
 GITHUB_WEBHOOK_UUID := "4ee34e80-b677-11ed-afa1-0242ac120002"
 PACT_CLI="docker run --rm -v ${PWD}:${PWD} -e PACT_BROKER_BASE_URL -e PACT_BROKER_TOKEN pactfoundation/pact-cli:latest"
+include .env
+
+#.EXPORT_ALL_VARIABLES:
+#GIT_COMMIT?=$(shell git rev-parse HEAD)
+#GIT_BRANCH?=$(shell git rev-parse --abbrev-ref HEAD)
+#ENVIRONMENT?=production
 
 # Only deploy from master
 ifeq ($(GIT_BRANCH),main)
+	@echo "\n========== main branch ==========\n"
 	DEPLOY_TARGET=deploy
 else
 	DEPLOY_TARGET=no_deploy
@@ -29,7 +36,11 @@ fake_ci: .env
 	make ci
 
 
-publish_pacts:
+publish_pacts: .env
+	@echo "\n========== STAGE: publish pacts ==========\n"
+	@echo "\n========== Branch: ${GIT_BRANCH}  ==========\n"
+	@echo "\n========== Commit: ${GIT_COMMIT}  ==========\n"
+	LOG_ENABLED=true \
 	@"${PACT_CLI}" publish ${PWD}/pacts --consumer-app-version ${GIT_COMMIT} --tag ${GIT_BRANCH}
 
 ## =====================
