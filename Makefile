@@ -12,7 +12,6 @@ include .env
 
 # Only deploy from master
 ifeq ($(GIT_BRANCH),main)
-	@echo "\n========== main branch ==========\n"
 	DEPLOY_TARGET=deploy
 else
 	DEPLOY_TARGET=no_deploy
@@ -34,7 +33,6 @@ fake_ci: .env
 	GIT_COMMIT=`git rev-parse --short HEAD`+`date +%s` \
 	GIT_BRANCH=`git rev-parse --abbrev-ref HEAD` \
 	make ci
-
 
 publish_pacts: .env
 	@echo "\n========== STAGE: publish pacts ==========\n"
