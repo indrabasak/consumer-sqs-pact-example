@@ -7,8 +7,7 @@ const { Book } = require('../../src/book/book');
 describe('Message provider tests', () => {
   const baseOpts = {
     logLevel: 'INFO',
-    // providerVersion: process.env.GIT_COMMIT,
-    providerVersion: '1.0.0',
+    providerVersion: process.env.GIT_COMMIT,
     providerVersionTags: process.env.GIT_BRANCH ? [process.env.GIT_BRANCH] : []
   };
 
