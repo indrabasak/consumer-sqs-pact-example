@@ -1,10 +1,14 @@
 name: Build
 
 # This workflow will run on every push event to the main branch
+#on:
+#  push:
+#    branches:
+#    - main
+
 on:
   push:
-    branches:
-    - main
+  workflow_dispatch:
 
 # Setup environment variables
 env:
